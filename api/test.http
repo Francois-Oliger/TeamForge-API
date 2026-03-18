@@ -12,6 +12,7 @@ Content-Type: application/json
 
 ### Récupération d'une team
 GET http://localhost:3000/teams/7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg0ODU5MywiZXhwIjoxNzczODU1NzkzfQ.Ggf4D-WI3gAMtOL1Ad0Kt9KnyNYtb-BNdaybzaBQoPk
 
 
 
@@ -38,12 +39,31 @@ Content-Type: application/json
 }
 
 ###Test ajout d'un pokemon dans un team
-
 POST http://localhost:3000/teams/7/pokemon/9
 Content-Type: application/json
 
 
 ###Test suppréssion d'un pokemon dans un team
-
 DELETE http://localhost:3000/teams/7/pokemon/9
 Content-Type: application/json
+
+
+###Test inscription d'un user
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+  "name": "Francois",
+  "email": "francois@test.com",
+  "pseudo": "francois",
+  "password": "azerty123"
+}
+
+###Test d'autentification d'un user
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+   "email": "francois@test.com",
+  "password": "azerty123"
+}

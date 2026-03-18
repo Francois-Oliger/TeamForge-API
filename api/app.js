@@ -3,10 +3,13 @@ import express from "express";
 import sequelize from "./database/sequelize-client.js";
 import "./models/index.js";
 import teamsRouter from "./routes/teams.router.js"
+import authRouter from "./routes/auth.router.js";
 
 const app = express();
 
+
 app.use(express.json());
+app.use(authRouter);
 app.use(teamsRouter);
 
 // await sequelize.sync({ alter: true });
