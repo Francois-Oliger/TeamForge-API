@@ -6,7 +6,8 @@ coverage/
 dist/
 .eslintcache
 
-
+*-backup/
+backup/
 
 # # Logs
 # logs
