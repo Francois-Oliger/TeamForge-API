@@ -1,0 +1,49 @@
+
+
+### Création d'une team
+POST http://localhost:3000/teams
+Content-Type: application/json
+
+{
+   "name": "Ma team fraKatchou",
+  "user_id": 1
+}
+
+
+### Récupération d'une team
+GET http://localhost:3000/teams/7
+
+
+
+### Suppression d'une team
+DELETE http://localhost:3000/teams/4
+
+
+
+### Modification d'une team
+PUT http://localhost:3000/teams/7
+Content-Type: application/json
+
+{
+  "name": "Team test bidouille"
+}
+
+
+### Test erreur création (sans user_id)
+POST http://localhost:3000/teams
+Content-Type: application/json
+
+{
+  "name": "étrange "
+}
+
+###Test ajout d'un pokemon dans un team
+
+POST http://localhost:3000/teams/7/pokemon/9
+Content-Type: application/json
+
+
+###Test suppréssion d'un pokemon dans un team
+
+DELETE http://localhost:3000/teams/7/pokemon/9
+Content-Type: application/json
