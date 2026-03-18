@@ -16,10 +16,23 @@ export async function getOneTeam (req, res) {
     res.json(team);
 }
 
-export async function createTeam (req,res) {
-    const team = await Team.create(req.body);    
-    res.status(201).json(team);
+export async function createTeam(req, res) {
+    //req.user.userId vient du middleware d'authentification, donc ici je récupere l'id de l'user connecté
+    const userId = req.user.userId;
+    // ici on demande à sequelize de créer une ligne dans la DB.  
+    const team = await Team.create({
+        //ici on recupère toutes les données envoyées dans la requête (grace à l'opérateur spread),
+        //et on ajoute userId qui est absent de la requête (et si il y est ca l'écrase; donc sécurité sup).
+        //de cette manière on lie la création de la team à un user en particulier.
+        ...req.body,
+    user_id: userId,
+  });
+
+  res.status(201).json(team);
 }
+
+
+
 
 export async function deleteTeam (req,res) {
     const team = req.team;    
@@ -27,11 +40,17 @@ export async function deleteTeam (req,res) {
     res.json({message: "team supprimée avec succès"});
 }
 
+
+
+
 export async function updateTeam (req,res) {
     const team = req.team;    
     await team.update(req.body);
     res.json(team);
 }
+
+
+
 
 //Pour ajouter un pokemon à une team
 export async function addPokemonToTeam (req, res) {
@@ -43,6 +62,8 @@ export async function addPokemonToTeam (req, res) {
     await team.addPokemon(pokemon);
     res.json({message: "Ce pokemon fait désormais partie de votre team"});
 }
+
+
 
 //pour retirer un pokemon d'une liste
 export async function removePokemonFromTeam(req, res) {

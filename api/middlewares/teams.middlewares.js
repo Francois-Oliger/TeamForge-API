@@ -2,6 +2,8 @@
 import { Team } from "../models/index.js";
 
 
+
+
 export async function findTeam(req, res, next) {
 //On récupère l’identifiant dans l’URL.
     const id = req.params.id || req.params.teamId;
@@ -21,6 +23,7 @@ export async function findTeam(req, res, next) {
 
     next();
 }
+
 
 
 
@@ -57,3 +60,13 @@ export function validateCreateTeam(req, res, next) {
     }  
     next();
   }
+
+
+  //ici on vérifie que la team chargée dans req.team appartient bien à l’utilisateur connecté.
+
+export function checkTeamOwner (req, res, next) {
+  if (req.user.userId !== req.team.user_id) {
+    return res.status(403).json({erreur: "acces interdit. Tu t'es trompé de route, l'ami"});
+}
+next();
+}

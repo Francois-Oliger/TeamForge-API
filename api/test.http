@@ -3,9 +3,10 @@
 ### Création d'une team
 POST http://localhost:3000/teams
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg1NTg3MiwiZXhwIjoxNzczODYzMDcyfQ.XeXrcKpWHMyEcCWnXcuI__JZz20ZdEg5EfgQjVNxy-E
 
 {
-   "name": "Ma team fraKatchou",
+   "name": "Ma team user_ok",
   "user_id": 1
 }
 
@@ -22,11 +23,12 @@ DELETE http://localhost:3000/teams/4
 
 
 ### Modification d'une team
-PUT http://localhost:3000/teams/7
+PUT http://localhost:3000/teams/10
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg1NTg3MiwiZXhwIjoxNzczODYzMDcyfQ.XeXrcKpWHMyEcCWnXcuI__JZz20ZdEg5EfgQjVNxy-E
 
 {
-  "name": "Team test bidouille"
+  "name": "Team test bidouille bon user"
 }
 
 

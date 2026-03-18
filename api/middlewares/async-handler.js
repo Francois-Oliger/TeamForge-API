@@ -1,5 +1,8 @@
 
-//On crée et on exporte une fonction nommée asyncHandler qui reçoit en paramètre controller, donc une fonction controller.
+//ici on créé un wrap qui vas gérer les try catch de nos controller
+
+
+//On crée et on exporte une fonction nommée asyncHandler qui reçoit en paramètre "controller", donc une fonction controller.
 export function asyncHandler(controller) {
     //asyncHandler retourne une nouvelle fonction middleware Express.
     return async (req, res, next) => {

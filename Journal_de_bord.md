@@ -92,9 +92,14 @@ POST /login
 ## test de toutes mes routes ok (c'est assez satisfaisant!)
 
 
+
+
 # ------------------Jour 3------------------------------
 
 objectif: inscription, authentification, connextion et autorisation si ok niveau temps.
 
 ## ajout des variable dans .env
-## création controller auth ok.
+## création authController
+## création authMiddleware et de route pour création et authentification de user
+## utilisation de req.user pour securiser les routes
+## création d'un middleware de propriété de team pour refacto la gestions des droits sur chaque routes en f des user checkTeamOwner.
