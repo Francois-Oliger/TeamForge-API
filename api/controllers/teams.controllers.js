@@ -2,12 +2,14 @@ import { Team, Pokemon } from "../models/index.js";
 
 
 
- // Recuperer toutes les listes:
+ //---------------Recuperer toutes les listes:-----------------
 export async function getAllTeams(req, res) {
 const teams = await Team.findAll({order: [['id', 'DESC']]});
  res.json(teams);
 }
 
+
+//----------------Recupérer une team:-----------------------
 export async function getOneTeam (req, res) {
     const id = req.params.id;
     const team = await Team.findByPk(id, {
@@ -16,6 +18,8 @@ export async function getOneTeam (req, res) {
     res.json(team);
 }
 
+
+//-----------------Créer une team:--------------------------
 export async function createTeam(req, res) {
     //req.user.userId vient du middleware d'authentification, donc ici je récupere l'id de l'user connecté
     const userId = req.user.userId;
@@ -33,7 +37,7 @@ export async function createTeam(req, res) {
 
 
 
-
+//----------------Supprimer une team:-------------------------
 export async function deleteTeam (req,res) {
     const team = req.team;    
     await team.destroy();    
@@ -42,7 +46,7 @@ export async function deleteTeam (req,res) {
 
 
 
-
+//--------------Mettre à jour une team-------------------------
 export async function updateTeam (req,res) {
     const team = req.team;    
     await team.update(req.body);
@@ -51,8 +55,7 @@ export async function updateTeam (req,res) {
 
 
 
-
-//Pour ajouter un pokemon à une team
+//-------------Ajouter un pokemon à une team-----------------
 export async function addPokemonToTeam (req, res) {
     //on récupère l’objet team déjà trouvé par le middleware
     const team = req.team;
@@ -65,7 +68,7 @@ export async function addPokemonToTeam (req, res) {
 
 
 
-//pour retirer un pokemon d'une liste
+//---------pour retirer un pokemon d'une team----------------
 export async function removePokemonFromTeam(req, res) {
     const team = req.team;
     const pokemon = req.pokemon;

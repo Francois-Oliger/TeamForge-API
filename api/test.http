@@ -3,7 +3,7 @@
 ### Création d'une team
 POST http://localhost:3000/teams
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg1NTg3MiwiZXhwIjoxNzczODYzMDcyfQ.XeXrcKpWHMyEcCWnXcuI__JZz20ZdEg5EfgQjVNxy-E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg2MDQ0NCwiZXhwIjoxNzczODY3NjQ0fQ.Qltbp5NRljORZom3dlyf22dZ_kROFpzGeEhXWAe1byg
 
 {
    "name": "Ma team user_ok",
@@ -13,7 +13,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhd
 
 ### Récupération d'une team
 GET http://localhost:3000/teams/7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg0ODU5MywiZXhwIjoxNzczODU1NzkzfQ.Ggf4D-WI3gAMtOL1Ad0Kt9KnyNYtb-BNdaybzaBQoPk
+Authorization: 
 
 
 
@@ -25,7 +25,7 @@ DELETE http://localhost:3000/teams/4
 ### Modification d'une team
 PUT http://localhost:3000/teams/10
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg1NTg3MiwiZXhwIjoxNzczODYzMDcyfQ.XeXrcKpWHMyEcCWnXcuI__JZz20ZdEg5EfgQjVNxy-E
+Authorization:
 
 {
   "name": "Team test bidouille bon user"
@@ -41,8 +41,9 @@ Content-Type: application/json
 }
 
 ###Test ajout d'un pokemon dans un team
-POST http://localhost:3000/teams/7/pokemon/9
+POST http://localhost:3000/teams/11/pokemon/19
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg2MDQ0NCwiZXhwIjoxNzczODY3NjQ0fQ.Qltbp5NRljORZom3dlyf22dZ_kROFpzGeEhXWAe1byg
 
 
 ###Test suppréssion d'un pokemon dans un team
