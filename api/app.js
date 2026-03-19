@@ -1,8 +1,7 @@
 import "dotenv/config";
 import express from "express";
-import sequelize from "./database/sequelize-client.js";
 import "./models/index.js";
-import teamsRouter from "./routes/teams.router.js"
+import teamsRouter from "./routes/team.router.js"
 import authRouter from "./routes/auth.router.js";
 
 const app = express();

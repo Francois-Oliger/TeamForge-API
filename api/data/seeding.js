@@ -1,4 +1,4 @@
-import sequelize from "../database/sequelize-client.js";
+import sequelize from "../database/sequelize_client.js";
 import { Pokemon, Type, Team, User } from "../models/index.js";
 
 async function seed() {

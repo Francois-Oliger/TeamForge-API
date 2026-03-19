@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../database/sequelize-client.js";
+import sequelize from "../database/sequelize_client.js";
 
 class PokemonType extends Model {}
 

@@ -1,6 +1,5 @@
 import { Router } from "express";
-import { register } from "../controllers/auth.controllers.js";
-import { login } from "../controllers/auth.controllers.js";
+import { register, login } from "../controllers/auth.controller.js";
 
 //ici on importe les fonctions et shema liés à Joi:
 import { validateBody } from "../middlewares/validation.middleware.js";

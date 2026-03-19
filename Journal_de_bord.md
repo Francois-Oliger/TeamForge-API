@@ -98,8 +98,15 @@ POST /login
 
 objectif: inscription, authentification, connextion et autorisation si ok niveau temps.
 
-## ajout des variable dans .env
-## création authController
-## création authMiddleware et de route pour création et authentification de user
-## utilisation de req.user pour securiser les routes
-## création d'un middleware de propriété de team pour refacto la gestions des droits sur chaque routes en f des user checkTeamOwner.
+ajout des variable dans .env
+création authController
+création authMiddleware et de route pour création et authentification de user
+utilisation de req.user pour securiser les routes
+création d'un middleware de propriété de team pour refacto la gestions des droits sur chaque routes en f des user checkTeamOwner.
+
+## installation de Joi juste pour tester
+creation de: validation.middleware.js
+création de schemas/auth.schema.js
+branchement du schema Joi sur /register
+(dans auth.router) => ajout des deux imports middleware et schema et modif des routes.
+Ainsi j’ai mis en place une validation des entrées avec Joi pour de sécuriser les données avant leur traitement côté serveur.

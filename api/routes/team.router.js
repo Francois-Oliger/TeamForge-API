@@ -1,11 +1,11 @@
 // ici on créé des routes pour les pages teams
 import { Router } from "express";
-import {validateCreateTeam, validateUpdateTeam, findTeam, checkTeamOwner } from "../middlewares/teams.middlewares.js"
-import {asyncHandler} from "../middlewares/async-handler.js"
-import { findPokemon } from "../middlewares/pokemon.middlewares.js";
-import { authMiddleware } from "../middlewares/auth.middlewares.js";
+import {validateCreateTeam, validateUpdateTeam, findTeam, checkTeamOwner } from "../middlewares/team.middleware.js"
+import {asyncHandler} from "../middlewares/async_handler.middleware.js"
+import { findPokemon } from "../middlewares/pokemon.middleware.js";
+import { authMiddleware } from "../middlewares/auth.middleware.js";
 // ici on importe le controller
-import {getAllTeams, updateTeam, deleteTeam, createTeam, getOneTeam, addPokemonToTeam, removePokemonFromTeam } from "../controllers/teams.controllers.js";
+import {getAllTeams, updateTeam, deleteTeam, createTeam, getOneTeam, addPokemonToTeam, removePokemonFromTeam } from "../controllers/team.controller.js";
 
 
 

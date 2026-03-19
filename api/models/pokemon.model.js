@@ -1,11 +1,8 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../database/sequelize-client.js";
-
-
+import sequelize from "../database/sequelize_client.js";
 
 // On crée une classe Sequelize qui représente la table pokemon.
 class Pokemon extends Model {}
-
 
 // On décrit les colonnes de la table. Chaque propriété = une colonne SQL.
 
@@ -65,8 +62,8 @@ Pokemon.init(
     sequelize,
     tableName: "pokemon",
     timestamps: true,
-    underscored: true
-  },  
+    underscored: true,
+  }
 );
 
 export default Pokemon;

@@ -1,4 +1,4 @@
-import sequelize from "../database/sequelize-client.js";
+import sequelize from "../database/sequelize_client.js";
 import "../models/index.js";
 
 try {

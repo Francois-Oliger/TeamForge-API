@@ -1,11 +1,8 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../database/sequelize-client.js";
-
-
+import sequelize from "../database/sequelize_client.js";
 
 // On crée une classe Sequelize qui représente la table Type.
 class Type extends Model {}
-
 
 // On décrit les colonnes de la table. Chaque propriété = une colonne SQL.
 
@@ -34,8 +31,8 @@ Type.init(
     sequelize,
     tableName: "type",
     timestamps: true,
-    underscored: true
-  },  
+    underscored: true,
+  }
 );
 
 export default Type;
