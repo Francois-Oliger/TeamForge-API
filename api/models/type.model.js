@@ -1,10 +1,8 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/sequelize_client.js";
 
-// On crée une classe Sequelize qui représente la table Type.
+// Represents the Type table.
 class Type extends Model {}
-
-// On décrit les colonnes de la table. Chaque propriété = une colonne SQL.
 
 Type.init(
   {
@@ -18,19 +16,11 @@ Type.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-
-    created_at: {
-      type: DataTypes.DATE,
-    },
-
-    updated_at: {
-      type: DataTypes.DATE,
-    },
   },
   {
     sequelize,
     tableName: "type",
-    timestamps: true,
+    timestamps: true, // Automatically manages created_at and updated_at
     underscored: true,
   }
 );

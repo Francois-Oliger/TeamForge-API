@@ -1,9 +1,10 @@
 import sequelize from "../database/sequelize_client.js";
 import { Pokemon, Type, Team, User } from "../models/index.js";
+import argon2 from "argon2";
 
 async function seed() {
   try {
-    console.log("🌱 Début du seeding...");
+    console.log("Starting database seeding...");
 
     const types = [
       [1, "Acier", "aaaabb"],
@@ -179,16 +180,27 @@ async function seed() {
       [149, "Dracolosse", 91, 134, 95, 100, 100, 80],
       [150, "Mewtwo", 106, 110, 90, 154, 90, 130],
       [151, "Mew", 100, 100, 100, 100, 100, 100],
-    ].map(([id, name, hp, atk, def, atk_spe, def_spe, speed]) => ({
-      id,
-      name,
-      hp,
-      atk,
-      def,
-      atk_spe,
-      def_spe,
-      speed,
-    }));
+    ].map(
+      ([
+        id,
+        name,
+        hp,
+        attack,
+        defense,
+        special_attack,
+        special_defense,
+        speed,
+      ]) => ({
+        id,
+        name,
+        hp,
+        attack,
+        defense,
+        special_attack,
+        special_defense,
+        speed,
+      })
+    );
 
     await Pokemon.bulkCreate(pokemons);
 
@@ -219,20 +231,41 @@ async function seed() {
 
     await sequelize.getQueryInterface().bulkInsert("pokemon_type", pokemonTypes);
 
+    const hashedPassword = await argon2.hash("Azerty123", {
+      memoryCost: parseInt(process.env.ARGON2_MEMORY_COST, 10),
+      timeCost: parseInt(process.env.ARGON2_TIME_COST, 10),
+      parallelism: parseInt(process.env.ARGON2_PARALLELISM, 10),
+    });
+
     await User.bulkCreate([
       {
         id: 1,
         email: "test@test.com",
         name: "test",
         pseudo: "test",
-        password: "123456",
+        password: hashedPassword,
       },
     ]);
 
     await Team.bulkCreate([
-      { id: 1, name: "Ultimate Team", description: "La meilleure team du monde", user_id: 1 },
-      { id: 2, name: "La Team de l'enfer", description: "Le feuuuuu", user_id: 1 },
-      { id: 3, name: "Squad fofolle", description: "Pour tout gagner", user_id: 1 },
+      {
+        id: 1,
+        name: "Ultimate Team",
+        description: "La meilleure team du monde",
+        user_id: 1,
+      },
+      {
+        id: 2,
+        name: "La Team de l'enfer",
+        description: "Le feuuuuu",
+        user_id: 1,
+      },
+      {
+        id: 3,
+        name: "Squad fofolle",
+        description: "Pour tout gagner",
+        user_id: 1,
+      },
     ]);
 
     const teamPokemons = [
@@ -275,9 +308,9 @@ async function seed() {
       );
     `);
 
-    console.log("✅ Seeding terminé");
+    console.log("Database seeding completed");
   } catch (error) {
-    console.error("❌ Erreur pendant le seeding :", error);
+    console.error("Database seeding failed:", error);
   } finally {
     await sequelize.close();
   }

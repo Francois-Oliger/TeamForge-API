@@ -1,57 +1,53 @@
-
-
-### Création d'une team
+### Create a team
 POST http://localhost:3000/teams
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg2MDQ0NCwiZXhwIjoxNzczODY3NjQ0fQ.Qltbp5NRljORZom3dlyf22dZ_kROFpzGeEhXWAe1byg
+Authorization: Bearer TON_TOKEN_ICI
 
 {
-   "name": "Ma team user_ok",
-  "user_id": 1
+  "name": "Ma team user ok"
 }
 
-
-### Récupération d'une team
+### Get one team
 GET http://localhost:3000/teams/7
-Authorization: 
 
-
-
-### Suppression d'une team
+### Delete a team
 DELETE http://localhost:3000/teams/4
+Authorization: Bearer TON_TOKEN_ICI
 
-
-
-### Modification d'une team
+### Update a team
 PUT http://localhost:3000/teams/10
 Content-Type: application/json
-Authorization:
+Authorization: Bearer TON_TOKEN_ICI
 
 {
-  "name": "Team test bidouille bon user"
+  "name": "Updated team name"
 }
 
+### Create team - missing name
+POST http://localhost:3000/teams
+Content-Type: application/json
+Authorization: Bearer TON_TOKEN_ICI
 
-### Test erreur création (sans user_id)
+{
+}
+
+### Create team - missing token
 POST http://localhost:3000/teams
 Content-Type: application/json
 
 {
-  "name": "étrange "
+  "name": "Unauthorized team"
 }
 
-###Test ajout d'un pokemon dans un team
+### Add a pokemon to a team
 POST http://localhost:3000/teams/11/pokemon/19
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzg2MDQ0NCwiZXhwIjoxNzczODY3NjQ0fQ.Qltbp5NRljORZom3dlyf22dZ_kROFpzGeEhXWAe1byg
+Authorization: Bearer TON_TOKEN_ICI
 
-
-###Test suppréssion d'un pokemon dans un team
+### Remove a pokemon from a team
 DELETE http://localhost:3000/teams/7/pokemon/9
-Content-Type: application/json
+Authorization: Bearer TON_TOKEN_ICI
 
-
-###Test inscription d'un user
+### Register a user
 POST http://localhost:3000/register
 Content-Type: application/json
 
@@ -59,14 +55,26 @@ Content-Type: application/json
   "name": "Francois",
   "email": "francois@test.com",
   "pseudo": "francois",
-  "password": "azerty123"
+  "password": "Azerty123"
 }
 
-###Test d'autentification d'un user
+### Login a user
 POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-   "email": "francois@test.com",
-  "password": "azerty123"
+  "email": "francois@test.com",
+  "password": "Azerty123"
 }
+
+### Login - invalid credentials
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "francois@test.com",
+  "password": "WrongPassword123"
+}
+
+### Get one team - invalid id
+GET http://localhost:3000/teams/abc

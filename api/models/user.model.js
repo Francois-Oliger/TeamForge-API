@@ -1,10 +1,8 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/sequelize_client.js";
 
-// On crée une classe Sequelize qui représente la table User.
+// Represents the User table.
 class User extends Model {}
-
-// On décrit les colonnes de la table. Chaque propriété = une colonne SQL.
 
 User.init(
   {
@@ -12,7 +10,9 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      isEmail: true,
+      validate: {
+        isEmail: true,
+      },
     },
 
     name: {
@@ -30,19 +30,11 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-
-    created_at: {
-      type: DataTypes.DATE,
-    },
-
-    updated_at: {
-      type: DataTypes.DATE,
-    },
   },
   {
     sequelize,
     tableName: "user",
-    timestamps: true,
+    timestamps: true, // Automatically manages created_at and updated_at
     underscored: true,
   }
 );

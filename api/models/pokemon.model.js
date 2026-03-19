@@ -1,10 +1,8 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/sequelize_client.js";
 
-// On crée une classe Sequelize qui représente la table pokemon.
+// Represents the Pokemon table.
 class Pokemon extends Model {}
-
-// On décrit les colonnes de la table. Chaque propriété = une colonne SQL.
 
 Pokemon.init(
   {
@@ -25,22 +23,22 @@ Pokemon.init(
       allowNull: false,
     },
 
-    atk: {
+    attack: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
 
-    def: {
+    defense: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
 
-    atk_spe: {
+    special_attack: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
 
-    def_spe: {
+    special_defense: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -49,19 +47,11 @@ Pokemon.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-
-    created_at: {
-      type: DataTypes.DATE,
-    },
-
-    updated_at: {
-      type: DataTypes.DATE,
-    },
   },
   {
     sequelize,
     tableName: "pokemon",
-    timestamps: true,
+    timestamps: true, // Automatically manages created_at and updated_at
     underscored: true,
   }
 );

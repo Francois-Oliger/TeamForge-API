@@ -1,10 +1,8 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/sequelize_client.js";
 
-// On crée une classe Sequelize qui représente la table Team.
+// Represents the Team table.
 class Team extends Model {}
-
-// On décrit les colonnes de la table. Chaque propriété = une colonne SQL.
 
 Team.init(
   {
@@ -22,19 +20,11 @@ Team.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-
-    created_at: {
-      type: DataTypes.DATE,
-    },
-
-    updated_at: {
-      type: DataTypes.DATE,
-    },
   },
   {
     sequelize,
     tableName: "team",
-    timestamps: true,
+    timestamps: true, // Automatically manages created_at and updated_at
     underscored: true,
   }
 );

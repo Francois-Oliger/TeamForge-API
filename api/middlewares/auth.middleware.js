@@ -1,35 +1,27 @@
 import jwt from "jsonwebtoken";
 
+// Verifies JWT and attaches user payload to the request.
+export function authMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization;
 
-//-------Création du middleware d’authentification pour:
-// récupérer le token dans la requête;
-// le vérifier; 
-// autoriser ou bloquer l’accès------------------------
+  // Checks if Authorization header is present.
+  if (!authHeader) {
+    return res.status(401).json({ error: "UNAUTHORIZED" });
+  }
 
-export async function authMiddleware (req, res, next) {
-    // on recupere "Bearer TOKEN" dans la requête.
-    const authHeader = req.headers.authorization;
+  // Extracts token from "Bearer <token>" format.
+  const [type, token] = authHeader.split(" ");
 
-    if (!authHeader) {
-      return res.status(401).json({
-        error: "Token manquant",
-      });
-    }
-  //ici on split "Bearer TOKEN" pour récupérer que le token.
-    const [type, token] = authHeader.split(" ");
-  
-    if (type !== "Bearer" || !token) {
-      return res.status(401).json({
-        error: "Invalid token",
-      });
-    }
-      try {
-        //jwt vérifie et decode le token. 
-        const payload = jwt.verify(token, process.env.TOKEN_SECRET);
-        //on stocke le userId que contient payload
-        req.user = payload;
-        return next();
-      } catch {
-        return res.status(401).json({ error: "Invalid or expired token" });
-      }     
-    }
+  if (type !== "Bearer" || !token) {
+    return res.status(401).json({ error: "INVALID_TOKEN" });
+  }
+
+  try {
+    const payload = jwt.verify(token, process.env.TOKEN_SECRET);
+
+    req.user = payload; // Contains userId
+    next();
+  } catch (error) {
+    return res.status(401).json({ error: "INVALID_OR_EXPIRED_TOKEN" });
+  }
+}
