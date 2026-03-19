@@ -1,6 +1,7 @@
 # ------------------Jour 1------------------------
 
-## initialisation du projet
+Initialisation du projet:
+
 npm init -y
 npm install express
 npm install dotenv
@@ -9,9 +10,9 @@ npm i -D nodemon eslint prettier
 npm install sequelize
 npm i pg-hstore
 
-Creation du gitignore, du .env et .env_exemple
+Création du .gitignore, du .env et du .env.example
 
-## Choix et mise en place de l'arborescance de base
+Choix et mise en place de l'arborescence de base
 .
 ├── api
 │   ├── app.js
@@ -33,80 +34,96 @@ Creation du gitignore, du .env et .env_exemple
 ├── Journal_de_bord.md
 └── README.md
 
-## création du MCD et créat_table
+Création du MCD et des tables
 
-Au vue de mon MCD, j'ai modifié le "create_table" afin d'y intégré une table "user".
-J'ai egalement ajouté "ON DELETE CASCADE" sur les tables de liaisons afin de suprimer les lignes correspondantes dans le cas ou l'on supprime une ligne parent.
+Au vu de mon MCD, j'ai modifié le create_table afin d'y intégrer une table user.
+J'ai également ajouté ON DELETE CASCADE sur les tables de liaison afin de supprimer les lignes correspondantes en cas de suppression d'une ligne parent.
 
-## Création de sequelize-client.js
-## Création des modeles et de model/index.js
-## Création de l'utilisateur et de la DB
-## création de l'app.js 
+Création de sequelize-client.js
+Création des modèles et de models/index.js
+Création de l'utilisateur et de la base de données
+Création de app.js
+
 (avec await sequelize.sync({ alter: true });)
 
 sudo -i -u postgres psql;
 CREATE USER admin_pokedex WITH LOGIN PASSWORD 'pokedex';
 CREATE DATABASE pokedex WITH OWNER admin_pokedex;
 
-puis je lance npm run dev
-(initialisation des tables grace à sequelize.sync)
+Puis je lance npm run dev
+(initialisation des tables grâce à sequelize.sync)
 
-puis je me reconnecte pour vérifier les tables
+Puis je me reconnecte pour vérifier les tables
+
 psql -U admin_pokedex -d pokedex
 
-si db ok: je colle sequelize.sync en commentaire pour éviter toute modif de la db au prochain npm run dev.
-
+Si la DB est OK : je commente sequelize.sync pour éviter toute modification de la base au prochain npm run dev.
 
 # -------------------Jour 2------------------------
 
-## Liste des routes à créer
+Liste des routes à créer
 
-CRUD Teams:
+CRUD Teams
 GET    /teams
 GET    /teams/:id
 POST   /teams
 PATCH  /teams/:id
 DELETE /teams/:id
+Gestion des Pokémon dans une équipe
+POST   /teams/:teamId/pokemon/:pokemonId (ajouter un Pokémon dans une équipe)
+DELETE /teams/:teamId/pokemon/:pokemonId (supprimer un Pokémon)
 
-Gestion Pokemon dans une équipe
-POST   /teams/:teamId/pokemon/:pokemonId (Ajouter un Pokémon dans une équipe, ex: teams/1/pokemon/25)
-DELETE /teams/:teamId/pokemon/:pokemonId (supprime...)
-
-Pokemon
+Pokémon
 GET /pokemon
 GET /pokemon/:id
 
 Type
 GET /types
-GET /types/:id/pokemon (recupère tous les pokemon d'un type donné)
+GET /types/:id/pokemon (récupère tous les Pokémon d'un type donné)
 
 Auth user
 POST /register
 POST /login
 
-
-## Création du CRUD Team et d'un fichier HTTP pour tester les routes au fur et à mesure avec Rest Client.
-
-## Création d'un middleware de validation des données de Team 
-## Création d'un wraper "async-handler.js" pour refacto les try/catch erreur 500
-## test de toutes mes routes ok (c'est assez satisfaisant!)
-
-
-
+Création du CRUD Team et d'un fichier HTTP pour tester les routes au fur et à mesure avec Rest Client
+Création d'un middleware de validation des données de Team
+Création d'un wrapper async-handler.js pour refactoriser les try/catch (erreurs 500)
+Test de toutes mes routes OK (c'est assez satisfaisant !)
 
 # ------------------Jour 3------------------------------
 
-objectif: inscription, authentification, connextion et autorisation si ok niveau temps.
+Objectif : inscription, authentification, connexion et autorisation si OK niveau temps
 
-ajout des variable dans .env
-création authController
-création authMiddleware et de route pour création et authentification de user
-utilisation de req.user pour securiser les routes
-création d'un middleware de propriété de team pour refacto la gestions des droits sur chaque routes en f des user checkTeamOwner.
+Ajout des variables dans .env
+Création de authController
+Création de authMiddleware et des routes pour la création et l'authentification des users
+Utilisation de req.user pour sécuriser les routes
+Création d'un middleware de propriété de team pour refactoriser la gestion des droits sur chaque route (checkTeamOwner)
 
-## installation de Joi juste pour tester
-creation de: validation.middleware.js
-création de schemas/auth.schema.js
-branchement du schema Joi sur /register
-(dans auth.router) => ajout des deux imports middleware et schema et modif des routes.
-Ainsi j’ai mis en place une validation des entrées avec Joi pour de sécuriser les données avant leur traitement côté serveur.
+Installation de Joi (test)
+
+Création de validation.middleware.js
+Création de schemas/auth.schema.js
+Branchement du schéma Joi sur /register
+(dans auth.router) → ajout des imports middleware et schema + modification des routes
+
+Ainsi, j’ai mis en place une validation des entrées avec Joi afin de sécuriser les données avant leur traitement côté serveur.
+
+# ------------------Jour 4--------------------------------
+
+Nettoyage de l’arborescence avec standardisation des noms de dossiers et fichiers
+
+Nettoyage des fichiers avec suppression des commentaires inutiles et correction des commentaires utiles (traduction en anglais)
+Nettoyage et standardisation des messages renvoyés
+
+Ajout dans sequelize_client.js d'une fonction de test de connexion à la DB
+Ajout d'un MLD et standardisation du MCD
+
+Ajout d'un throw error dans le test de connexion Sequelize pour faire remonter l'erreur afin qu'elle soit gérée
+Ajout de await testConnection().catch(() => process.exit(1)); dans app.js afin d'arrêter l'app en cas d'erreur
+
+Création d'un middleware d'erreur
+
+Amélioration de mon auth.schema (Joi)
+
+Ajout d'un README projet pour le portfolio

@@ -1,14 +1,14 @@
 ### Create a team
 POST http://localhost:3000/teams
 Content-Type: application/json
-Authorization: Bearer TON_TOKEN_ICI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3Mzk1MjM1NCwiZXhwIjoxNzczOTU5NTU0fQ.mcxVPp2aeaf8LWo_asQqUJ1wR2rTcEEjLP2eNCOiomQ
 
 {
   "name": "Ma team user ok"
 }
 
 ### Get one team
-GET http://localhost:3000/teams/7
+GET http://localhost:3000/teams/2
 
 ### Delete a team
 DELETE http://localhost:3000/teams/4
