@@ -44,7 +44,7 @@ Création des modèles et de models/index.js
 Création de l'utilisateur et de la base de données
 Création de app.js
 
-(avec await sequelize.sync({ alter: true });)
+Utilisation temporaire de sequelize.sync({ alter: true }) pendant la phase de développement.
 
 sudo -i -u postgres psql;
 CREATE USER admin_pokedex WITH LOGIN PASSWORD 'pokedex';
