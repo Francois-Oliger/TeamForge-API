@@ -1,7 +1,9 @@
+//  Ce fichier définit les schémas Joi utilisés pour valider les données d'inscription et de connexion des utilisateurs.
+ 
 
 import Joi from "joi";
 
-// Validates request body for user registration.
+// Valide les données envoyées lors de l'inscription.
 export const registerSchema = Joi.object({
   name: Joi.string().min(2).max(50).trim().required(),
   email: Joi.string().email().lowercase().trim().required(),
@@ -13,7 +15,7 @@ export const registerSchema = Joi.object({
     .required(),
 });
 
-// Validates request body for user login.
+// Valide les données envoyées lors de la connexion.
 export const loginSchema = Joi.object({
   email: Joi.string().email().lowercase().trim().required(),
   password: Joi.string().required(),

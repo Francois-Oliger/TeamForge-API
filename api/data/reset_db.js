@@ -1,7 +1,6 @@
 import sequelize from "../database/sequelize_client.js";
 import "../models/index.js";
 
-// Resets the database by dropping and recreating all tables.
 try {
   console.log("Starting database reset...");
 

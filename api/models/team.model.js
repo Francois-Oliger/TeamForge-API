@@ -1,7 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/sequelize_client.js";
 
-// Represents the Team table.
 class Team extends Model {}
 
 Team.init(
@@ -24,7 +23,7 @@ Team.init(
   {
     sequelize,
     tableName: "team",
-    timestamps: true, // Automatically manages created_at and updated_at
+    timestamps: true,
     underscored: true,
   }
 );

@@ -1,6 +1,5 @@
 
-//ici on Ajoute la vraie validation Joi dans le middleware.
-//Pour vérifier la validité des info dans req.body, et donc:
+//ici on Ajoute la vraie validation Joi dans le middleware pour vérifier la validité des info dans req.body, et donc:
 // pour empêcher les données invalides d’entrer dans le controller.
 
 export function validateBody(schema) {

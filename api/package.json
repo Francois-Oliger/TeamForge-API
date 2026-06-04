@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch app.js",
+    "start": "node app.js",
+    "db:reset": "node data/reset_db.js",
+    "db:seed": "node data/seeding.js",
     "lint": "eslint ."
   },
   "keywords": [],
@@ -14,7 +17,7 @@
   "type": "module",
   "dependencies": {
     "argon2": "^0.44.0",
-    "dotenv": "^17.3.1",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",

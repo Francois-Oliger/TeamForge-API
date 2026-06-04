@@ -1,17 +1,21 @@
+// Ce contrôleur gère l'inscription et la connexion des utilisateurs.
+// Il vérifie les données reçues, sécurise les mots de passe et génère un token JWT après authentification.
+ 
+
 import { User } from "../models/index.js";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 
-// Registers a new user.
+// Inscrit un nouvel utilisateur.
 export async function register(req, res) {
   const { email, pseudo, password, name } = req.body || {};
 
-  // Validates required fields.
+  // Vérifie la présence des champs obligatoires.
   if (!email?.trim() || !pseudo?.trim() || !password?.trim()) {
     return res.status(400).json({ error: "MISSING_REQUIRED_FIELDS" });
   }
 
-  // Checks whether the email is already in use.
+  // Vérifie si l'adresse email est déjà utilisée.
   const existingUser = await User.findOne({
     where: { email: email.trim() },
   });
@@ -20,14 +24,14 @@ export async function register(req, res) {
     return res.status(409).json({ error: "USER_ALREADY_EXISTS" });
   }
 
-  // Hashes the password before storing it.
+  // Hash le mot de passe avant son enregistrement.
   const hashedPassword = await argon2.hash(password, {
     memoryCost: parseInt(process.env.ARGON2_MEMORY_COST, 10),
     timeCost: parseInt(process.env.ARGON2_TIME_COST, 10),
     parallelism: parseInt(process.env.ARGON2_PARALLELISM, 10),
   });
 
-  // Creates the user with sanitized text fields.
+  // Crée l'utilisateur avec des champs texte nettoyés.
   const newUser = await User.create({
     email: email.trim(),
     pseudo: pseudo.trim(),
@@ -35,7 +39,7 @@ export async function register(req, res) {
     password: hashedPassword,
   });
 
-  // Returns public user data only.
+  // Retourne uniquement les données publiques de l'utilisateur.
   return res.status(201).json({
     user: {
       id: newUser.id,
@@ -46,16 +50,16 @@ export async function register(req, res) {
   });
 }
 
-// Authenticates a user and returns a JWT.
+// Authentifie un utilisateur et retourne un JWT.
 export async function login(req, res) {
   const { email, password } = req.body || {};
 
-  // Validates required fields.
+  // Vérifie la présence des champs obligatoires.
   if (!email?.trim() || !password?.trim()) {
     return res.status(400).json({ error: "MISSING_REQUIRED_FIELDS" });
   }
 
-  // Finds the user by email.
+  // Recherche l'utilisateur par email.
   const user = await User.findOne({
     where: { email: email.trim() },
   });
@@ -64,19 +68,19 @@ export async function login(req, res) {
     return res.status(401).json({ error: "INVALID_CREDENTIALS" });
   }
 
-  // Verifies the provided password against the stored hash.
+  // Vérifie le mot de passe fourni avec le hash enregistré.
   const isValidPassword = await argon2.verify(user.password, password);
 
   if (!isValidPassword) {
     return res.status(401).json({ error: "INVALID_CREDENTIALS" });
   }
 
-  // Generates a JWT for the authenticated user.
+  // Génère un JWT pour l'utilisateur authentifié.
   const token = jwt.sign({ userId: user.id }, process.env.TOKEN_SECRET, {
     expiresIn: process.env.TOKEN_EXPIRES_IN,
   });
 
-  // Returns the token and public user data.
+  // Retourne le token et les données publiques de l'utilisateur.
   return res.status(200).json({
     token,
     user: {

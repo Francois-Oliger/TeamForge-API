@@ -1,3 +1,7 @@
+-- Ce fichier initialise la structure de la base de données PostgreSQL.
+-- Il crée les différentes tables de l'application ainsi que leurs relations et contraintes d'intégrité: (clés primaires, clés étrangères, unicité, suppressions en cascade).
+
+
 BEGIN;
 
 DROP TABLE IF EXISTS "team_pokemon", "pokemon_type", "team", "type", "pokemon", "user";

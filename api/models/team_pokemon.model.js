@@ -1,7 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/sequelize_client.js";
 
-// Pivot table linking Team and Pokemon (many-to-many).
 class TeamPokemon extends Model {}
 
 TeamPokemon.init(

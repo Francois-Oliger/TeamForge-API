@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/sequelize_client.js";
 
-// Represents the Pokemon table.
+
 class Pokemon extends Model {}
 
 Pokemon.init(
@@ -51,7 +51,7 @@ Pokemon.init(
   {
     sequelize,
     tableName: "pokemon",
-    timestamps: true, // Automatically manages created_at and updated_at
+    timestamps: true,
     underscored: true,
   }
 );

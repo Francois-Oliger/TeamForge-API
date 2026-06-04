@@ -1,6 +1,10 @@
+// Ce contrôleur gère les opérations liées aux équipes :
+// création, modification, suppression et gestion des Pokémon associés.
+
+
 import { Team, Pokemon } from "../models/index.js";
 
-// Returns all teams ordered by most recent.
+// Retourne toutes les équipes par ordre décroissant de création.
 export async function getAllTeams(req, res) {
   const teams = await Team.findAll({
     order: [["id", "DESC"]],
@@ -9,7 +13,7 @@ export async function getAllTeams(req, res) {
   res.json(teams);
 }
 
-// Returns the selected team with its associated pokemons.
+// Retourne une équipe avec ses Pokémon associés.
 export async function getOneTeam(req, res) {
   const team = await req.team.reload({
     include: [Pokemon],
@@ -18,19 +22,21 @@ export async function getOneTeam(req, res) {
   res.json(team);
 }
 
-// Creates a new team for the authenticated user.
+// Crée une nouvelle équipe pour l'utilisateur authentifié.
 export async function createTeam(req, res) {
   const { userId } = req.user;
 
   const team = await Team.create({
     ...req.body,
-    user_id: userId, // Prevents ownership override from client input.
+
+    // Empêche le client de modifier le propriétaire de l'équipe.
+    user_id: userId,
   });
 
   res.status(201).json(team);
 }
 
-// Deletes the selected team.
+// Supprime l'équipe sélectionnée.
 export async function deleteTeam(req, res) {
   const { team } = req;
 
@@ -39,7 +45,7 @@ export async function deleteTeam(req, res) {
   res.status(204).send();
 }
 
-// Updates the selected team.
+// Met à jour l'équipe sélectionnée.
 export async function updateTeam(req, res) {
   const { team } = req;
 
@@ -48,7 +54,7 @@ export async function updateTeam(req, res) {
   res.json(team);
 }
 
-// Adds a pokemon to the selected team.
+// Ajoute un Pokémon à l'équipe sélectionnée.
 export async function addPokemonToTeam(req, res) {
   const { team, pokemon } = req;
 
@@ -57,7 +63,7 @@ export async function addPokemonToTeam(req, res) {
   res.json({ message: "POKEMON_ADDED_TO_TEAM" });
 }
 
-// Removes a pokemon from the selected team.
+// Retire un Pokémon de l'équipe sélectionnée.
 export async function removePokemonFromTeam(req, res) {
   const { team, pokemon } = req;
 

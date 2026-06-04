@@ -1,15 +1,17 @@
+// Ce middleware vérifie la présence et la validité du token JWT afin de protéger les routes nécessitant une authentification.
+ 
 import jwt from "jsonwebtoken";
 
-// Verifies JWT and attaches user payload to the request.
+// Vérifie le JWT et ajoute les informations utilisateur à la requête.
 export function authMiddleware(req, res, next) {
   const authHeader = req.headers.authorization;
 
-  // Checks if Authorization header is present.
+  // Vérifie la présence du header Authorization.
   if (!authHeader) {
     return res.status(401).json({ error: "UNAUTHORIZED" });
   }
 
-  // Extracts token from "Bearer <token>" format.
+  // Extrait le token du format "Bearer <token>".
   const [type, token] = authHeader.split(" ");
 
   if (type !== "Bearer" || !token) {
@@ -19,7 +21,9 @@ export function authMiddleware(req, res, next) {
   try {
     const payload = jwt.verify(token, process.env.TOKEN_SECRET);
 
-    req.user = payload; // Contains userId
+    // Ajoute les informations utilisateur décodées à la requête.
+    req.user = payload;
+
     next();
   } catch (error) {
     return res.status(401).json({ error: "INVALID_OR_EXPIRED_TOKEN" });
