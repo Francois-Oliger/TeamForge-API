@@ -1,25 +1,27 @@
-
-
-//  Ce fichier initialise la connexion Sequelize à la base de données
-//  et fournit une fonction permettant de vérifier que la connexion fonctionne correctement.
- 
+// Ce fichier configure la connexion Sequelize à la base de données
+// et fournit une fonction permettant de vérifier que celle-ci est accessible.
 
 import "dotenv/config";
 import { Sequelize } from "sequelize";
 
-
-// Vérifie que l'URL de connexion à la base de données est bien définie.
+// Vérifie que l'URL de connexion à la base de données est définie
+// dans les variables d'environnement.
 if (!process.env.DB_URL) {
   throw new Error("DB_URL is not defined");
 }
 
-// Initialise Sequelize avec l'URL de connexion.
+// Initialise l'instance Sequelize avec les paramètres de connexion.
 const sequelize = new Sequelize(process.env.DB_URL, {
-  // Désactive l'affichage des requêtes SQL dans la console.
   logging: false,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 });
 
-// Vérifie que la connexion à la base de données fonctionne correctement.
+// Vérifie que la connexion à la base de données est opérationnelle.
 export async function testConnection() {
   try {
     await sequelize.authenticate();
@@ -27,7 +29,8 @@ export async function testConnection() {
   } catch (error) {
     console.error("Database connection failed:", error);
 
-    // Propage l'erreur afin d'arrêter l'application si la base est inaccessible.
+    // Relance l'erreur afin d'empêcher le démarrage de l'application
+    // si la base de données n'est pas accessible.
     throw error;
   }
 }
