@@ -2,20 +2,18 @@
 
 ```bash
 # Cloner le projet
-git clone REPO_SSH_URL
+git clone git@github.com:Francois-Oliger/TeamForge-API.git
 
 # Se déplacer dans le projet
-cd REPO_NAME
+cd TeamForge-API
 
 # Ouvrir le projet dans VSCode
 code .
 
 cd api
-npm init -y
 
-# Installer les dépendances nécessaire au back
-npm install [A DEFINIR]
-
+# Installer les dépendances nécessaires au back
+npm install
 ```
 
 ## Mise en place de la base de données
@@ -25,15 +23,28 @@ npm install [A DEFINIR]
 sudo -i -u postgres psql
 
 # Créer un utilisateur de base de données
-CREATE USER admin_pokedex WITH LOGIN PASSWORD 'pokedex';
+CREATE USER nom_utilisateur WITH LOGIN PASSWORD 'mot_de_passe';
 
-# Créer une base de données 
-CREATE DATABASE pokedex WITH OWNER admin_pokedex;
+# Créer une base de données
+CREATE DATABASE pokedex WITH OWNER nom_utilisateur;
 
 # Quitter psql
-exit
+\q
 ```
 
 ## Mise en place de l'environnement de développement
 
-N'oubliez pas de créer votre .env et un .env.example 😉
+Créer un fichier `.env` à l'aide du fichier `.env.example`.
+
+## Initialisation de la base de données
+
+```bash
+node data/reset_db.js
+node data/seeding.js
+```
+
+## Lancement du projet
+
+```bash
+npm run dev
+```

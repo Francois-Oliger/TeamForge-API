@@ -127,3 +127,26 @@ Création d'un middleware d'erreur
 Amélioration de mon auth.schema (Joi)
 
 Ajout d'un README projet pour le portfolio
+
+# ------------------Jour 5--------------------------------
+
+Préparation du projet pour le portfolio
+
+Ajout d'une route racine permettant de vérifier rapidement que l'API est opérationnelle.
+
+Ajout d'un script start dans package.json pour le déploiement.
+
+Création d'un dépôt GitHub public dédié au projet.
+
+Déploiement de l'API sur Render.
+
+Création et configuration d'une base PostgreSQL hébergée sur Render.
+
+Configuration des variables d'environnement de production.
+
+Adaptation de Sequelize pour la connexion SSL requise par PostgreSQL sur Render.
+
+Initialisation de la base de données distante puis vérification du fonctionnement des routes.
+
+Validation du déploiement :
+https://teamforge-api-jf9r.onrender.com
