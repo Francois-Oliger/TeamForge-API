@@ -146,7 +146,42 @@ Configuration des variables d'environnement de production.
 
 Adaptation de Sequelize pour la connexion SSL requise par PostgreSQL sur Render.
 
-Initialisation de la base de données distante puis vérification du fonctionnement des routes.
+Création des scripts reset_db.js et seeding.js pour l'initialisation de la base de données.
+
+Initialisation de la base distante puis vérification du fonctionnement des routes.
+
+Création d'un README d'installation et de déploiement destiné au portfolio.
 
 Validation du déploiement :
+
 https://teamforge-api-jf9r.onrender.com
+
+
+# ------------------Jour 6--------------------------------
+
+Documentation de l'API avec Swagger (OpenAPI)
+
+Installation de swagger-ui-express et swagger-jsdoc.
+
+Création d'un dossier docs dédié à la documentation de l'API.
+
+Création d'un fichier swagger.js pour centraliser la configuration OpenAPI.
+
+Ajout d'une route /api-docs dans Express afin d'afficher l'interface Swagger.
+
+Création d'un fichier api.swagger.js regroupant la documentation des endpoints.
+
+Documentation des routes Teams (CRUD et gestion des Pokémon).
+
+Documentation des routes d'authentification (/register et /login).
+
+Création de schémas OpenAPI pour les requêtes et les réponses de l'API.
+
+Ajout de l'authentification JWT dans Swagger afin de tester les routes protégées directement depuis l'interface.
+
+Vérification de la génération automatique de la documentation et des schémas.
+
+Validation de la documentation :
+
+https://teamforge-api-jf9r.onrender.com/api-docs
+

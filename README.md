@@ -1,6 +1,16 @@
-# 🧩 Pokedex API
+# 🧩 TeamForge API
+
+[Documentation Swagger](https://teamforge-api-jf9r.onrender.com/api-docs) • [API en ligne](https://teamforge-api-jf9r.onrender.com)
 
 API REST développée avec Node.js et Sequelize permettant de gérer des équipes de Pokémon.
+
+---
+
+## Présentation
+
+TeamForge API est une API REST de démonstration réalisée dans le cadre de ma formation développeur.
+
+Le projet s'appuie sur l'univers Pokémon afin d'illustrer la conception d'un backend complet : authentification JWT, validation des données, gestion des relations entre entités, persistance PostgreSQL et documentation OpenAPI avec Swagger.
 
 ---
 
@@ -14,6 +24,7 @@ API REST développée avec Node.js et Sequelize permettant de gérer des équipe
 * Hash des mots de passe avec Argon2
 * Base PostgreSQL
 * Déploiement sur Render
+* Documentation interactive avec Swagger (OpenAPI)
 
 ---
 
@@ -26,6 +37,7 @@ API REST développée avec Node.js et Sequelize permettant de gérer des équipe
 * JWT (authentification)
 * Argon2 (hash mot de passe)
 * Joi (validation)
+* Swagger / OpenAPI
 
 ---
 
@@ -172,6 +184,20 @@ Un fichier `.http` est disponible pour tester les routes avec REST Client.
 
 ---
 
+## Architecture
+
+L'application suit une architecture en couches :
+
+- Routes : définition des endpoints
+- Middlewares : authentification, validation et gestion des erreurs
+- Controllers : logique métier
+- Models : accès aux données via Sequelize
+- PostgreSQL : persistance des données
+
+Cette organisation facilite la maintenance, les tests et l'évolution du projet.
+
+---
+
 ## Choix techniques
 
 * Utilisation de Sequelize pour simplifier les relations entre les entités
@@ -179,17 +205,6 @@ Un fichier `.http` est disponible pour tester les routes avec REST Client.
 * Validation des entrées avec Joi
 * Hash des mots de passe avec Argon2
 * Authentification JWT
-
----
-
-## Objectif
-
-Projet réalisé dans le cadre de ma formation développeur afin de maîtriser :
-
-* les API REST
-* la gestion d’une base de données relationnelle
-* l’authentification sécurisée
-* l’architecture backend
 
 ---
 
