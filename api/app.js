@@ -5,10 +5,16 @@ import "./models/index.js";
 import teamsRouter from "./routes/team.router.js";
 import authRouter from "./routes/auth.router.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./docs/swagger.js";
 
 const app = express();
 
 app.use(express.json());
+
+// Route dédiée à la documentation Swagger.
+// Elle affiche une interface interactive permettant de consulter et de tester les endpoints de l'API.
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Route de vérification permettant de confirmer que l'API est accessible
 app.get("/", (req, res) => {
